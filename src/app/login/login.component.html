@@ -1,0 +1,33 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="login-header">Iniciar Sesión</h2>
+    @if (errorMessage) {
+      <div class="error-message">{{ errorMessage }}</div>
+    }    
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email" class="input-label">Nombre de Usuario</label>
+        <input
+          id="email"
+          type="text"
+          placeholder="Ingrese su correo"
+          formControlName="email"
+          class="input-field"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password" class="input-label">Contraseña</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Ingrese su contraseña"
+          formControlName="password"
+          class="input-field"
+        />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="submit-button">Iniciar Sesión</button>
+      </div>
+    </form>
+  </div>
+</div>
