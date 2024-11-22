@@ -46,7 +46,7 @@ export class RegisterComponent {
           });
         },
         error: (err) => {
-          this.errorMessage = err.code;
+          this.errorMessage = this.authService.getErrorMessage(err.code);
         },
       });
     console.log('register');

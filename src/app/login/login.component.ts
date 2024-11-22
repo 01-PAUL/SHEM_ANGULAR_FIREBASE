@@ -3,11 +3,14 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -24,15 +27,19 @@ export class LogicComponent {
   errorMessage: string | null = null;
 
   onSubmit(): void {
-    const rawForm = this.form.getRawValue();
-    this.authService.login(rawForm.email, rawForm.password).subscribe({
-      next: () => {
-        this.router.navigateByUrl('/register');
-      },
-      error: (err) => {
-        this.errorMessage = err.code;
-      },
-    });
-    console.log('login');
+  const rawForm = this.form.getRawValue();
+  this.authService.login(rawForm.email, rawForm.password).subscribe({
+    next: () => {
+      this.router.navigateByUrl('/principal');
+    },
+    error: (err) => {
+      this.errorMessage = this.authService.getErrorMessage(err.code);
+    },
+  });
+  console.log('login');
+}
+
+  onRegister(): void {
+    this.router.navigateByUrl('/register');
   }
 }

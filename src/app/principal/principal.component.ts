@@ -1,17 +1,16 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from './auth.service';
-import { UserInterface } from './user.interface';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-principal',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
+  imports: [CommonModule],
+  templateUrl: './principal.component.html',
+  styleUrl: './principal.component.css'
 })
-export class AppComponent implements OnInit {
+export class PrincipalComponent implements OnInit {
   authService = inject(AuthService);
 
   ngOnInit(): void {
@@ -25,10 +24,5 @@ export class AppComponent implements OnInit {
         this.authService.currentUserSig.set(null);
       }
     });
-  }
-
-  logout(): void {
-    this.authService.logout();
-    console.log('logout');
   }
 }
