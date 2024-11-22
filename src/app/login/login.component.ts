@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,32 +14,57 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LogicComponent {
   fb = inject(FormBuilder);
   http = inject(HttpClient);
   router = inject(Router);
-  authService = inject(AuthService)
+  authService = inject(AuthService);
 
   form = this.fb.nonNullable.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required],
+    email: ['', [Validators.required, noWhitespaceValidator]],
+    password: ['', [Validators.required, noWhitespaceValidator]],
   });
+
   errorMessage: string | null = null;
 
   onSubmit(): void {
-  const rawForm = this.form.getRawValue();
-  this.authService.login(rawForm.email, rawForm.password).subscribe({
-    next: () => {
-      this.router.navigateByUrl('/principal');
-    },
-    error: (err) => {
-      this.errorMessage = this.authService.getErrorMessage(err.code);
-    },
-  });
-  console.log('login');
-}
+    if (this.form.invalid) {
+      this.displayValidationErrors();
+      return;
+    }
+
+    const rawForm = this.form.getRawValue();
+    this.authService.login(rawForm.email, rawForm.password).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/principal');
+      },
+      error: (err) => {
+        this.errorMessage = this.authService.getErrorMessage(err.code);
+      },
+    });
+    console.log('login');
+  }
+
+  displayValidationErrors(): void {
+    if (this.form.get('email')?.hasError('required')) {
+      this.errorMessage = 'Por favor, ingrese el email';
+    } else if (this.form.get('email')?.hasError('whitespace')) {
+      this.errorMessage = 'El email no puede contener espacios';
+    } else if (this.form.get('password')?.hasError('required')) {
+      this.errorMessage = 'Por favor, ingrese la contraseña';
+    } else if (this.form.get('password')?.hasError('whitespace')) {
+      this.errorMessage = 'La contraseña no puede contener espacios';
+    }
+  }
 
   onRegister(): void {
     this.router.navigateByUrl('/register');
   }
+  
+}
+
+export function noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {
+  const isWhitespace = (control.value || '').trim().length === 0;
+  return isWhitespace ? { whitespace: true } : null;
 }

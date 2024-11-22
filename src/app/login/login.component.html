@@ -1,9 +1,7 @@
 <div class="login-container">
   <div class="login-card">
     <h2 class="login-header">Iniciar Sesión</h2>
-    @if (errorMessage) {
-      <div class="error-message">{{ errorMessage }}</div>
-    }    
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="email" class="input-label">Correo de Usuario</label>
@@ -14,6 +12,7 @@
           formControlName="email"
           class="input-field"
         />
+        
       </div>
       <div class="form-group">
         <label for="password" class="input-label">Contraseña</label>
@@ -24,13 +23,14 @@
           formControlName="password"
           class="input-field"
         />
+        
       </div>
       <div class="form-group">
         <button type="submit" class="submit-button">Iniciar Sesión</button>
       </div>
       <div class="form-group">
         <button type="button" class="register-button" (click)="onRegister()">Registrarse</button>
-      </div>      
+      </div>
     </form>
   </div>
 </div>
