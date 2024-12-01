@@ -23,6 +23,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideAuth(() => getAuth()), provideAnimationsAsync(), provideAnimationsAsync()
+    provideAuth(() => getAuth()), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync()
   ],
 };
