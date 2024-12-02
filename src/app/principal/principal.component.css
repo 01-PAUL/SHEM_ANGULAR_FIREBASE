@@ -208,3 +208,35 @@ body {
         margin-bottom: 20px;
     }
 }
+
+.horizontal-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 20px auto;
+    height: 300px; /* Ajusta según lo necesario */
+}
+
+.horizontal-images .image {
+    width: 150%; /* Ocupa todo el ancho del contenedor */
+    height: 130%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Clases para cada imagen */
+.image1 {
+    background-image: url('1.jpeg');
+}
+
+.image2 {
+    background-image: url('2.jpeg');
+}
+
+.image3 {
+    background-image: url('3.jpeg');
+}

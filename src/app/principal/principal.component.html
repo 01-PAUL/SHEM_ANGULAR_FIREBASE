@@ -16,10 +16,10 @@
                 <li class="menu-item">
                     <a>REGISTROS</a>
                     <ul class="submenu">
-                        <li><a href="#">ESTUDIANTE</a></li>
+                        <li><a href="estudiante">ESTUDIANTE</a></li>
                         <li><a href="#">DOCENTE</a></li>
-                        <li><a href="#">USUARIO</a></li>
                         <li><a href="#">PERSONAL ADMIN</a></li>
+                        <li><a href="#">USUARIO</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -53,27 +53,13 @@
             <div class="welcome-message">
                 Bienvenido {{ authService.currentUserSig()?.username }}
             </div>
+            <br>
 
             <div class="horizontal-images">
-                <img src="assets/img/1.jpeg" alt="Imagen 1">
-                <img src="assets/img/2.jpeg" alt="Imagen 2">
-                <img src="assets/img/3.jpeg" alt="Imagen 3">
-            </div>
+                <div [class]="getImageClass()" class="image"></div>
+            </div>                               
             
-            <div class="details">
-                <div>
-                    <h3>Detalle 1</h3>
-                    <p>Descripción del detalle 1.</p>
-                </div>
-                <div>
-                    <h3>Detalle 2</h3>
-                    <p>Descripción del detalle 2.</p>
-                </div>
-                <div>
-                    <h3>Detalle 3</h3>
-                    <p>Descripción del detalle 3.</p>
-                </div>
-            </div>
+            
         </main>
     </div>
 </body>
