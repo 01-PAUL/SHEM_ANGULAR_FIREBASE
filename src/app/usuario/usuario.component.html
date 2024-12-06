@@ -1,1 +1,80 @@
-<p>usuario works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>CIBER-SHEM </h2>
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item" id="inicio"><a href="principal">INICIO</a></li>
+                <li class="menu-item" id="registros">
+                    <a>REGISTROS</a>
+                    <ul class="submenu">
+                        <li><a href="usuario">USUARIO</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item" id="mantenimiento">
+                    <a>ACTUALIZAR</a>
+                    <ul class="submenu">
+                        <li><a href="estudianteAct">ESTUDIANTE</a></li>
+                        <li><a href="docenteAct">DOCENTE</a></li>
+                        <li><a href="personalAct">PERSONAL ADMIN</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="logout">
+                <a href="">CERRAR SESIÓN</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="register-form">
+              <h1 class="register-title">Crear Cuenta</h1>
+              
+              <!-- Campo de Correo Electrónico -->
+              <div class="form-group">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Ingresa tu correo electrónico"
+                  formControlName="email"
+                  class="form-input"
+                />
+                <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-text">
+                  <div *ngIf="form.get('email')?.hasError('required')">El correo electrónico es obligatorio.</div>
+                  <div *ngIf="form.get('email')?.hasError('email')">El correo electrónico no es válido.</div>
+                </div>
+              </div>
+          
+              <!-- Campo de Contraseña -->
+              <div class="form-group">
+                <label for="password" class="form-label">Contraseña</label>
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Ingresa tu contraseña"
+                  formControlName="password"
+                  class="form-input"
+                />
+                <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-text">
+                  <div *ngIf="form.get('password')?.hasError('required')">La contraseña es obligatoria.</div>
+                  <div *ngIf="form.get('password')?.hasError('minlength')">La contraseña debe tener al menos 6 caracteres.</div>
+                </div>
+              </div>
+          
+              <!-- Botón de envío -->
+              <div class="form-group">
+                <button type="submit" class="form-button" [disabled]="form.invalid">Registrar</button>
+              </div>
+            </form>     
+          
+        </main>
+    </div>
+</body>
+</html>

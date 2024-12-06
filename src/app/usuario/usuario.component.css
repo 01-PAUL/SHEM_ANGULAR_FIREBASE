@@ -1,0 +1,336 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(180deg, #f0f4ff, #e6edff);
+    padding: 20px;
+  }
+  
+  .register-form {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 500px; /* Tamaño fijo */
+    text-align: center; /* Centrar elementos dentro del formulario */
+  }
+  
+  .register-title {
+    font-size: 2rem;
+    color: #2e65a8;
+    font-weight: bold;
+    margin-bottom: 20px; /* Separar del resto del formulario */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left; /* Alinear etiquetas y campos a la izquierda */
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .form-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  }
+  
+  .form-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+  }
+  
+  .form-button:disabled {
+    background-color: #cccccc;
+  }
+  
+  .form-button:not(:disabled) {
+    cursor: pointer;
+    opacity: 1;
+  }
+  
+  .form-button:not(:disabled):hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  .error-text {
+    font-size: 0.9rem;
+    color: #ff4d4d;
+    margin-top: 5px;
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 768px) {
+    .register-form {
+      width: 90%; /* Ajustar en pantallas más pequeñas */
+      padding: 20px;
+    }
+  
+    .register-title {
+      font-size: 1.8rem;
+    }
+  }
+  
+  
+    
+    /* Botón */
+    .form-button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    .form-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    
+    .form-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    /* Estilo general */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Estilos para el menú lateral */
+  .sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, #1d487c, #2e65a8);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  
+  h2 {
+    font-size: 2em;
+    text-align: center;
+}
+
+  .sidebar-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-item {
+    margin-bottom: 10px;
+  }
+  
+  .menu-item a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .menu-item a:hover {
+    background-color: #384b5e;
+  }
+  
+  .submenu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    background-color: #285a97;
+  }
+  
+  .submenu li {
+    margin: 0;
+  }
+  
+  .submenu a {
+    padding: 10px 30px;
+    font-size: 0.9em;
+  }
+  
+  .menu-item:hover .submenu {
+    display: block;
+  }
+  
+  .logout {
+    margin-top: auto;
+  }
+  
+  .logout a {
+    background-color: #f44336;
+    color: #fff;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .logout a:hover {
+    background-color: #e53935;
+  }
+  
+  /* Estilos para el contenido principal */
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #d1e5fd;
+    margin-left: 250px;
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos de bienvenida */
+  .welcome-title {
+    font-size: 3em;
+    font-weight: bold;
+    color: #2e65a8;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .welcome-message {
+    font-size: 2.5em;
+    color: #444;
+    margin-bottom: 40px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  /* Estilos para las imágenes horizontales */
+  .horizontal-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 20px auto;
+    gap: 20px;
+  }
+  
+  .horizontal-images img {
+    width: 30%;
+    height: auto; /* Mantiene proporción */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover; /* Asegura que se adapten bien al contenedor */
+    display: block; /* Garantiza que no se comporten como elementos inline */
+  }
+  
+  .horizontal-images img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Estilos para los detalles */
+  .details {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px 0;
+    margin-top: 20px;
+  }
+  
+  .details div {
+    width: 30%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .details div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .details h3 {
+    font-size: 1.5em;
+    color: #2e65a8;
+  }
+  
+  .details p {
+    font-size: 1em;
+    color: #444;
+  }
+  
+  /* Responsividad para dispositivos más pequeños */
+  @media (max-width: 768px) {
+    .horizontal-images {
+        flex-direction: column;
+    }
+  
+    .horizontal-images img {
+        width: 90%; /* Mejor ajuste en dispositivos pequeños */
+    }
+  
+    .details {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .details div {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+  }

@@ -9,58 +9,94 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2>Menú</h2>
+                <h2>CIBER-SHEM </h2>
             </div>
             <ul class="menu-list">
-                <li class="menu-item"><a href="principal">INICIO</a></li>
-                <li class="menu-item">
+                <li class="menu-item" id="inicio"><a href="principal">INICIO</a></li>
+                <li class="menu-item" id="registros">
                     <a>REGISTROS</a>
                     <ul class="submenu">
-                        <li><a href="estudiante">ESTUDIANTE</a></li>
-                        <li><a href="#">DOCENTE</a></li>
-                        <li><a href="#">PERSONAL ADMIN</a></li>
-                        <li><a href="#">USUARIO</a></li>
+                        <li><a href="usuario">USUARIO</a></li>
                     </ul>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item" id="mantenimiento">
                     <a>ACTUALIZAR</a>
                     <ul class="submenu">
-                        <li><a href="#">ESTUDIANTE</a></li>
-                        <li><a href="#">DOCENTE</a></li>
-                        <li><a href="#">USUARIO</a></li>
-                        <li><a href="#">PERSONAL ADMIN</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item">
-                    <a>REPORTES</a>
-                    <ul class="submenu">
-                        <li><a href="#">ESTUDIANTE</a></li>
-                        <li><a href="#">DOCENTE</a></li>
-                        <li><a href="#">USUARIO</a></li>
-                        <li><a href="#">PERSONAL ADMIN</a></li>
+                        <li><a href="estudianteAct">ESTUDIANTE</a></li>
+                        <li><a href="docenteAct">DOCENTE</a></li>
+                        <li><a href="personalAct">PERSONAL ADMIN</a></li>
                     </ul>
                 </li>
             </ul>
             <div class="logout">
-                <a href="#">CERRAR SESIÓN</a>
+                <a href="">CERRAR SESIÓN</a>
             </div>
         </aside>
-
+    
         <main class="main-content">
             <div class="welcome-title">
                 ¡Bienvenido a nuestro sistema!
             </div>
             <div class="welcome-message">
-                Bienvenido {{ authService.currentUserSig()?.username }}
+                Bienvenido {{ currentUser?.username || 'Usuario' }}
             </div>
-            <br>
-
+    
             <div class="horizontal-images">
                 <div [class]="getImageClass()" class="image"></div>
-            </div>                               
-            
-            
+            </div>
         </main>
-    </div>
+    
+        <!-- Chatbot flotante -->
+        <div class="chatbot-icon" (click)="toggleChatbot()">💬</div>
+    
+        <div class="chatbot" *ngIf="isChatbotOpen">
+            <div class="chatbot-header">
+                SHEM - Asistente Virtual
+            </div>
+            <div class="chatbot-body">
+                <ng-container *ngIf="chatStep === 0">
+                    <p>Hola <strong>{{ currentUser?.username || 'Usuario' }}</strong>, ¿cómo estás el día de hoy?</p>
+                    <p>Soy <strong>SHEM</strong>, tu asistente virtual, y hoy aprenderemos cómo usar <strong>CIBER-SHEM.</strong></p>
+                    <button class="botón" (click)="startChat()">¡Empecemos!</button>
+                </ng-container>
+                <ng-container *ngIf="chatStep === 1">
+                    <p>Este es el menú <strong>INICIO</strong>, donde puedes encontrar información principal del sistema.</p>
+                    
+                    <div class="chatbot-buttons">
+                        <button class="botón-atras" (click)="previousStep()">ATRÁS</button>
+                        <button class="botón-siguiente" (click)="nextStep()">SIGUIENTE</button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="chatStep === 2">
+                    <p>En <strong>REGISTROS</strong> , puedes gestionar los datos de <strong>USUARIOS</strong> registrados.</p>
+                    
+                    <div class="chatbot-buttons">
+                        <button class="botón-atras" (click)="previousStep()">ATRÁS</button>
+                        <button class="botón-siguiente" (click)="nextStep()">SIGUIENTE</button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="chatStep === 3">
+                    <p>En <strong>MANTENIMIENTO</strong>, se administran datos de <strong>ESTUDIANTE</strong>, <strong>DOCENTE</strong> y <strong>PERSONAL ADMIN.</strong></p>
+                    
+                    <div class="chatbot-buttons">
+                        <button class="botón-atras" (click)="previousStep()">ATRÁS</button>
+                        <button class="botón-siguiente" (click)="nextStep()">SIGUIENTE</button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="chatStep === 4">
+                    <p>En <strong>CERRAR SESIÓN</strong>, puedes finalizar tu sesión de manera segura.</p>
+                    
+                    <div class="chatbot-buttons">
+                        <button class="botón-atras" (click)="previousStep()">ATRÁS</button>
+                        <button class="botón-siguiente" (click)="finishChat()">FINALIZAR</button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="chatStep > 4">
+                    <p><strong>¡ESTÁS LISTO! AHORA ES TU TURNO. 🚀😃</strong></p>
+                    <button class="botón" (click)="closeChatbot()">CERRAR</button>
+                </ng-container>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>

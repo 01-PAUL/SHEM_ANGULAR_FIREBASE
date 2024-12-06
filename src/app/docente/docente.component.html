@@ -1,1 +1,134 @@
-<p>docente works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Menú</h2>
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="principal">INICIO</a></li>
+                <li class="menu-item">
+                    <a>REGISTROS</a>
+                    <ul class="submenu">
+                        <li><a href="estudiante">ESTUDIANTE</a></li>
+                        <li><a href="#">DOCENTE</a></li>
+                        <li><a href="#">PERSONAL ADMIN</a></li>
+                        <li><a href="#">USUARIO</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a>ACTUALIZAR</a>
+                    <ul class="submenu">
+                        <li><a href="#">ESTUDIANTE</a></li>
+                        <li><a href="#">DOCENTE</a></li>
+                        <li><a href="#">USUARIO</a></li>
+                        <li><a href="#">PERSONAL ADMIN</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a>REPORTES</a>
+                    <ul class="submenu">
+                        <li><a href="#">ESTUDIANTE</a></li>
+                        <li><a href="#">DOCENTE</a></li>
+                        <li><a href="#">USUARIO</a></li>
+                        <li><a href="#">PERSONAL ADMIN</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="logout">
+                <a href="#">CERRAR SESIÓN</a>
+            </div>
+        </aside>
+
+
+        
+        
+        <main class="main-content">
+
+            <div class="form-container">
+                <div class="form-container">
+                    <!-- Primer bloque de información personal -->
+                    <h2>Información Personal</h2>
+                    <form #personalForm="">
+                      <div class="row">
+                        <div class="fields-container">
+                          <div class="field-row">
+                            <div class="input-group">
+                              <label for="dni">Número de Documento:</label>
+                              <input type="text" id="dni" name="dni" required>
+                            </div>
+                            <div class="input-group">
+                              <label for="nombres">Nombres:</label>
+                              <input type="text" id="nombres" name="nombres" disabled>
+                            </div>
+                          </div>
+                          <div class="field-row">
+                            <div class="input-group">
+                              <label for="apellidos">Apellidos:</label>
+                              <input type="text" id="apellidos" name="apellidos" disabled>
+                            </div>
+                            <div class="input-group">
+                              <label for="tipoDocumento">Tipo de Documento:</label>
+                              <input type="text" id="tipoDocumento" name="tipoDocumento" disabled>
+                            </div>
+                          </div>
+                          <div class="field-row">
+                            <div class="input-group">
+                              <label for="genero">Género:</label>
+                              <input type="text" id="genero" name="genero" disabled>
+                            </div>
+                            <div class="input-group">
+                              <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                              <input type="text" id="fechaNacimiento" name="fechaNacimiento" disabled>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="image-container">
+                          <label for="imagen">Imagen:</label>
+                          <input type="text" id="imagen" name="imagen" disabled>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  
+<!-- Segundo bloque de información académica -->
+<h2>Información Académica</h2>
+<form #academicForm="">
+
+  <div class="row">
+    <div class="input-group">
+      <label for="codigoUsuario">Código Usuario:</label>
+      <input type="text" id="codigoUsuario" name="codigoUsuario" required>
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="btn-qr">Generar QR</button>
+      <button type="button" class="btn-qr">Descargar QR</button>
+    </div>
+
+    <div class="codigo-container">
+      <label for="codigo">Código QR:</label>
+      <input type="text" id="codigo" name="codigo" disabled>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="buttons">
+      <button type="button" class="btn-register">Registrar</button>
+    </div>
+  </div>
+
+</form>
+</div>
+              
+              
+    </main>
+</div>
+</body>
+</html>

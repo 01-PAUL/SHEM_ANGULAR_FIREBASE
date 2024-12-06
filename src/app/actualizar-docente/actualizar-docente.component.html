@@ -1,1 +1,122 @@
-<p>actualizar-docente works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>CIBER-SHEM </h2>
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item" id="inicio"><a href="principal">INICIO</a></li>
+                <li class="menu-item" id="registros">
+                    <a>REGISTROS</a>
+                    <ul class="submenu">
+                        <li><a href="usuario">USUARIO</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item" id="mantenimiento">
+                    <a>ACTUALIZAR</a>
+                    <ul class="submenu">
+                        <li><a href="estudianteAct">ESTUDIANTE</a></li>
+                        <li><a href="docenteAct">DOCENTE</a></li>
+                        <li><a href="personalAct">PERSONAL ADMIN</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="logout">
+                <a href="">CERRAR SESIÓN</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="toast-message" *ngIf="mensajeVisible">
+                <div class="dialog-container">
+                    <div class="dialog-icon">
+                        <span>&#x2714;</span>
+                    </div>
+                    <h2 class="dialog-title">¡Actualización exitosa!</h2>
+                    <p class="dialog-message">Código: {{ codigoActualizado }}</p>
+                    <p class="dialog-message">Ciclo: {{ cicloActualizado }}</p>
+                </div>
+            </div>       
+            <div class="toast-messag" *ngIf="mensajeVisibl">
+                <div class="dialog-container">
+                    <div class="dialog-icon">
+                        <span>&#x2714;</span>
+                    </div>
+                    <h2 class="dialog-title">Docente eliminado <br> exitosamente!</h2>
+                    <p class="dialog-message">Nombre: {{ nombreEliminado }}</p>
+                    <p class="dialog-message">Código: {{ codigoEliminado }}</p>
+                </div>
+            </div>                    
+            <h1>Listado de Docentes</h1>
+            <div class="filtro-docentes">
+                <div class="filtro-docentes">
+                    <input 
+                    type="text" 
+                    [(ngModel)]="filtroTexto" 
+                    (ngModelChange)="validarEmoji(); buscarDocentes()"
+                    (keydown)="prevenirEntradaNoAlfanumerica($event)" 
+                    (paste)="validarPegado($event)" 
+                    placeholder="Buscar por nombre o código de docente" 
+                    class="input-buscar"
+                    />
+                </div>                  
+            </div>
+            <br>
+            <div class="lista-docentes">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-id">ID</th>
+                            <th class="col-nombre">Nombre</th>
+                            <th class="col-apellido">Apellido</th>
+                            <th class="col-codigo">Codigo</th>
+                            <th class="col-tipo-doc">Tipo Documento</th>
+                            <th class="col-doc">Documento</th>
+                            <th class="col-imagen">Imagen</th>
+                            <th class="col-autorizacion">Autorización</th>
+                            <th class="col-eliminar">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let docente of docentesFiltrados | slice:(paginaActual * elementosPorPagina):(paginaActual + 1) * elementosPorPagina">
+                            <td class="col-id">{{ docente.data.idDocente }}</td>
+                            <td class="col-nombre">{{ docente.data.nombres }}</td>
+                            <td class="col-apellido">{{ docente.data.apellidos }}</td>
+                            <td class="col-codigo">{{ docente.data.codUsuario }}</td>
+                            <td class="col-tipo-doc">{{ getTipoDocumento(docente.data.idTipoDocumento) }}</td>
+                            <td class="col-doc">{{ docente.data.numDocumento }}</td>                  
+                            <td class="col-imagen">
+                                <img src="{{ docente.data.imageUrl }}" alt="Imagen de docente">
+                            </td>
+                            <td class="col-autorizacion">
+                                <button
+                                    (click)="toggleAutorizacion(docente)"
+                                    [class.activo]="docente.data.autorizacion === 'Autorizado'"
+                                    [class.inactivo]="docente.data.autorizacion === 'No Autorizado'"
+                                >
+                                    {{ docente.data.autorizacion }}
+                                </button>
+                            </td>
+                            <td class="col-eliminar">
+                                <button (click)="eliminarDocente(docente)" class="btn-eliminar">
+                                    <i class="fas fa-trash-alt"></i> 
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>                                                                                                     
+                </table>
+                <mat-paginator [length]="docentesFiltrados.length" [pageSize]="4" [pageSizeOptions]="[4]" (page)="cambiarPagina($event)">
+                </mat-paginator>                
+            </div>
+            
+
+        </main>
+    </div>
+</body>
+</html>

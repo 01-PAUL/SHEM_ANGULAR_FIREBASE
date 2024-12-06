@@ -29,10 +29,14 @@ body {
     left: 0;
     z-index: 10;
 }
-
+h2 {
+    font-size: 2em;
+    text-align: center;
+}
 .sidebar-header {
     text-align: center;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .menu-list {
@@ -128,6 +132,7 @@ body {
     margin-bottom: 40px;
     text-align: center;
     line-height: 1.5;
+    text-transform: uppercase;
 }
 
 /* Estilos para las imágenes horizontales */
@@ -239,4 +244,74 @@ body {
 
 .image3 {
     background-image: url('3.jpeg');
+}
+
+/* Chatbot flotante */
+
+.chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.chatbot {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.chatbot-header {
+    background-color: #3498db;
+    color: rgb(240, 240, 240);
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.chatbot-body {
+    padding: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.chatbot-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.chatbot-buttons button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #3498db;
+    transition: background-color 0.3s;
+}
+
+.chatbot-buttons button:hover {
+    background-color: #2874a6;
 }

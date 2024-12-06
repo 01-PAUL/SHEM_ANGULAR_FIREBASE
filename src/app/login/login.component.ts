@@ -28,14 +28,25 @@ export class LogicComponent {
 
   errorMessage: string | null = null;
 
+  // Lista de correos permitidos
+  allowedEmails = ['estibenyerovim@gmail.com', 'poolponcehuaranga@gmail.com'];
+
   onSubmit(): void {
     if (this.form.invalid) {
       this.displayValidationErrors();
       return;
     }
 
-    const rawForm = this.form.getRawValue();
-    this.authService.login(rawForm.email, rawForm.password).subscribe({
+    const { email, password } = this.form.getRawValue();
+
+    // Validación de correos permitidos
+    if (!this.allowedEmails.includes(email)) {
+      this.errorMessage = 'Email y/o contraseña incorrectos';
+      return;
+    }
+
+    // Llamada al servicio de autenticación
+    this.authService.login(email, password).subscribe({
       next: () => {
         this.router.navigateByUrl('/principal');
       },
@@ -43,7 +54,6 @@ export class LogicComponent {
         this.errorMessage = this.authService.getErrorMessage(err.code);
       },
     });
-    console.log('login');
   }
 
   displayValidationErrors(): void {
@@ -61,7 +71,6 @@ export class LogicComponent {
   onRegister(): void {
     this.router.navigateByUrl('/register');
   }
-  
 }
 
 export function noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {

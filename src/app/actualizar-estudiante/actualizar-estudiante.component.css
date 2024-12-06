@@ -1,0 +1,589 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+h2 {
+    font-size: 2em;
+    text-align: center;
+}
+
+/* Estilos para el menú lateral */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, #1d487c, #2e65a8);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin-bottom: 10px;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.menu-item a:hover {
+    background-color: #384b5e;
+}
+
+.submenu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    background-color: #285a97;
+}
+
+.submenu li {
+    margin: 0;
+}
+
+.submenu a {
+    padding: 10px 30px;
+    font-size: 0.9em;
+}
+
+.menu-item:hover .submenu {
+    display: block;
+}
+
+.logout {
+    margin-top: auto;
+}
+
+.logout a {
+    background-color: #f44336;
+    color: #fff;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: block;
+}
+
+.logout a:hover {
+    background-color: #e53935;
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #d1e5fd;
+    margin-left: 250px;
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos de bienvenida */
+.welcome-title {
+    font-size: 3em;
+    font-weight: bold;
+    color: #2e65a8;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.welcome-message {
+    font-size: 2.5em;
+    color: #444;
+    margin-bottom: 40px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Estilos para las imágenes horizontales */
+.horizontal-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+.horizontal-images img {
+    width: 30%;
+    height: auto; /* Mantiene proporción */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover; /* Asegura que se adapten bien al contenedor */
+    display: block; /* Garantiza que no se comporten como elementos inline */
+}
+
+.horizontal-images img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para los detalles */
+.details {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+.details div {
+    width: 30%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.details div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.details h3 {
+    font-size: 1.5em;
+    color: #2e65a8;
+}
+
+.details p {
+    font-size: 1em;
+    color: #444;
+}
+
+/* Responsividad para dispositivos más pequeños */
+@media (max-width: 768px) {
+    .horizontal-images {
+        flex-direction: column;
+    }
+
+    .horizontal-images img {
+        width: 90%; /* Mejor ajuste en dispositivos pequeños */
+    }
+
+    .details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .details div {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+.lista-estudiantes {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+table {
+  width: 50%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #1d487c;
+
+  text-align: center;
+  color: white;
+}
+
+/* Ajuste general de la tabla */
+table {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    border-collapse: collapse;
+    table-layout: fixed; /* Controla el ancho fijo de las columnas */
+  }
+  
+  /* Ajuste de cada columna */
+  .col-id {
+    width: 10%;
+    text-align: center;
+  }
+  
+  .col-nombre, .col-apellido {
+  text-align: center;
+    width: 23%;
+  }
+  
+  .col-codigo, .col-tipo-doc, .col-doc {
+    
+  text-align: center;
+    width: 25%;
+  }
+  
+  .col-usuario {
+  text-align: center;
+    width: 20%;
+  }
+  
+  .col-autorizacion {
+    width: 30%;
+    text-align: center;
+  }
+
+  .col-eliminar {
+    width: 18%;
+    text-align: center;
+  }
+  
+  .col-imagen {
+    width: 20%;
+    text-align: center;
+}
+
+.col-imagen img {
+  width: 50px; /* Ancho fijo */
+  height: 50px; /* Alto fijo */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+  object-fit: cover; /* Ajusta la imagen para que llene el contenedor sin deformarse */
+}
+
+@media (max-width: 768px) {
+  .horizontal-images img {
+      width: 80px; /* Tamaño reducido para pantallas pequeñas */
+      height: 80px;
+  }
+}
+
+  @media (max-width: 768px) {
+  table {
+    font-size: 0.9em; /* Reduce el tamaño de fuente */
+  }
+
+  .col-id, .col-imagen {
+    display: none; /* Oculta columnas menos importantes */
+  }
+
+  .col-nombre, .col-apellido, .col-usuario {
+    width: auto; /* Permite que ocupen más espacio */
+  }
+}
+button.activo {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.inactivo {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .filtro-estudiantes {
+    margin-bottom: 20px;
+  }
+  
+  .input-buscar {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .table th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+  
+  td.col-ciclo select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2e65a8;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-buscar {
+    padding: 12px;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.table {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table thead {
+    background-color: #2e65a8;
+    color: #fff;
+    font-weight: bold;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+button.activo {
+    background-color: #4caf50;
+}
+
+button.inactivo {
+    background-color: #f44336;
+}
+
+.main-content {
+    
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.filtro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  /* Título principal */
+  h1 {
+    font-size: 3rem; /* Aumenta el tamaño de la fuente */
+    color: #1d487c; /* Color del texto */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    text-align: center; /* Centra el texto */
+    position: relative; /* Permite agregar efectos de posición */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre las letras */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    font-family: 'Arial', sans-serif; /* Familia tipográfica */
+}
+
+  /* Contenedor del filtro */
+  .filtro-estudiantes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Input del filtro */
+  .input-buscar {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #d1e5fd;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .input-buscar:focus {
+    border-color: #1d487c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Botón de búsqueda (opcional) */
+  .btn-buscar {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #1d487c;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-buscar:hover {
+    background-color: #2e65a8;
+  }
+
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .filtro-container {
+      padding: 15px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .input-buscar {
+      font-size: 0.9rem;
+      padding: 8px 12px;
+    }
+
+    .btn-buscar {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+    }
+}
+
+.paginador {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+
+.toast-message {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #58c542;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeInOut 2s ease forwards;
+  width: 300px; /* Set the desired width here */
+}
+
+.toast-messag {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #f0f8ff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeInOut 3s ease forwards;
+  width: 260px; /* Set the desired width here */
+}
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialog-icon span {
+  font-size: 24px;
+}
+
+.dialog-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.dialog-message {
+  margin: 5px 0;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.btn-eliminar {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #e74c3c;  /* Color rojo para indicar eliminación */
+  font-size: 20px;
+}
+
+.icon-tachito {
+  font-size: 20px;
+}

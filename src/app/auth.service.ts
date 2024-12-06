@@ -10,19 +10,18 @@ import { UserInterface } from './user.interface';
 })
 export class AuthService {
   firebaseAuth = inject(Auth);
-  user$ = user(this.firebaseAuth)
-  currentUserSig = signal<UserInterface | null | undefined>(undefined)
+  user$ = user(this.firebaseAuth);
+  currentUserSig = signal<UserInterface | null | undefined>(undefined);
 
   register(
     email: string,
-    username: string,
-    password:string,
+    password: string
   ): Observable<void> {
     const promise = createUserWithEmailAndPassword(
       this.firebaseAuth,
       email,
-      password,
-    ).then(response => updateProfile(response.user, {displayName: username}))
+      password
+    ).then(() => {}); // Elimina la actualización de username (updateProfile)
 
     return from(promise);
   }
@@ -31,7 +30,7 @@ export class AuthService {
     const promise = signInWithEmailAndPassword(
       this.firebaseAuth,
       email,
-      password,
+      password
     ).then(() => {});
 
     return from(promise);
