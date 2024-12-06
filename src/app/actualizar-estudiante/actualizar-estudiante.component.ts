@@ -127,7 +127,7 @@ export class ActualizarEstudianteComponent implements OnInit {
   }
 
   buscarEstudiantes(): void {
-    const filtro = this.filtroTexto.toString().replaceAll("\\s{2,}", " ");  // Remueve espacios extra y los convierte en uno solo
+    const filtro = this.filtroTexto.trim().toLowerCase();  
     if (filtro) {
       this.estudiantesFiltrados = this.estudiantes.filter((estudiante) =>
         estudiante.data.nombres.toLowerCase().includes(filtro) ||
