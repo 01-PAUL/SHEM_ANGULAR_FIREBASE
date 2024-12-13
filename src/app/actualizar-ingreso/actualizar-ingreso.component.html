@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>CIBER-SHEM </h2>
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item" id="inicio"><a href="principal">INICIO</a></li>
+                <li class="menu-item" id="registros">
+                    <a>REGISTROS</a>
+                    <ul class="submenu">
+                        <li><a href="usuario">USUARIO</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item" id="mantenimiento">
+                    <a>ACTUALIZAR</a>
+                    <ul class="submenu">
+                        <li><a href="estudianteAct">ESTUDIANTE</a></li>
+                        <li><a href="docenteAct">DOCENTE</a></li>
+                        <li><a href="personalAct">PERSONAL ADMIN</a></li>
+                        <li><a href="ingresoAct">INGRESO</a></li>
+                        <li><a href="salidaAct">SALIDA</a></li>
+                        <li><a href="permisoIngresoAct">PERMISO INGRESO</a></li>
+                        <li><a href="permisoSalidaAct">PERMISO SALIDA</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="logout">
+                <a href="">CERRAR SESIÓN</a>
+            </div>
+        </aside>
+        <main class="main-content">                       
+            <h1>Listado de Ingreso de Usuarios</h1>
+            <div class="filtro-estudiantes">
+                <div class="filtro-estudiantes">
+                    <input 
+                    type="text" 
+                    [(ngModel)]="filtroTexto" 
+                    (ngModelChange)="buscarIngreso()"
+                    (keydown)="prevenirEntradaNoAlfanumerica($event)"
+                    (keydown)="prevenirEspaciosExcesivos($event)"
+                    (paste)="validarPegado($event)"
+                    placeholder="Buscar por usuario o código de usuario" 
+                    class="input-buscar"
+                    />
+                    <div class="botones-descargar">
+                        <button (click)="descargarPDF()" class="btn-descarga">PDF</button>
+                        <button (click)="exportarExcel()" class="btn-descargar">EXCEL</button>
+                      </div>
+                </div>                  
+            </div>
+            <br>
+            <div class="lista-estudiantes">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-tipo-doc">Tipo Usuario</th>
+                            <th class="col-nombre">Usuario</th>
+                            <th class="col-codigo">Codigo</th>
+                            <th class="col-tipo-doc">Tipo Documento</th>
+                            <th class="col-doc">Documento</th>
+                            <th class="col-fecha">Fecha</th>
+                            <th class="col-hora">Hora</th>
+                            <th class="col-usuario">Tipo Micromovilidad</th>
+                            <th class="col-imagen">Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ingreso of ingresoFiltrados | slice:(paginaActual * elementosPorPagina):(paginaActual * elementosPorPagina + elementosPorPagina)">
+                            <td class="col-tipo-doc">{{ ingreso.data.tipoUsuario }}</td>
+                            <td class="col-nombre">{{ ingreso.data.usuario }}</td>
+                            <td class="col-codigo">{{ ingreso.data.codigoUsuario }}</td>
+                            <td class="col-tipo-doc">{{ ingreso.data.tipoDocumento }}</td>
+                            <td class="col-doc">{{ ingreso.data.numeroDocumento }}</td>            
+                            <td class="col-doc">{{ ingreso.data.fechaIngreso }}</td>      
+                            <td class="col-doc">{{ ingreso.data.horaIngreso }}</td>     
+                            <td class="col-doc">{{ ingreso.data.tipoMicromovilidad }}</td>                  
+                            <td class="col-imagen">
+                                <img src="{{ ingreso.data.imageUrl }}" alt="Imagen de estudiante">
+                            </td>            
+                        </tr>
+                    </tbody>                                                                                                     
+                </table>
+                <mat-paginator [length]="ingresoFiltrados.length" [pageSize]="4" [pageSizeOptions]="[4]" (page)="cambiarPagina($event)">
+                </mat-paginator>                
+            </div>
+        </main>
+    </div>
+</body>
+</html>

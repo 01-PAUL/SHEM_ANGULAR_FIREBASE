@@ -213,7 +213,7 @@ h2 {
         margin-bottom: 20px;
     }
 }
-.lista-docentes {
+.lista-estudiantes {
   padding: 10px;
   background-color: #f5f5f5;
   border-radius: 5px;
@@ -252,27 +252,38 @@ table {
   
   .col-nombre, .col-apellido {
   text-align: center;
-    width: 30%;
+    width: 23%;
   }
   
-  .col-codigo, .col-tipo-doc, .col-doc {
+  .col-tipo-doc, .col-doc {
     
   text-align: center;
-    width: 25%;
+    width: 18%;
   }
+
+  .col-codigo {
+    
+    text-align: center;
+      width: 18%;
+    }
   
   .col-usuario {
   text-align: center;
     width: 20%;
   }
+
+  .col-fecha {
+    text-align: center;
+      width: 18%;
+    }
+
+.col-hora {
+    text-align: center;
+        width: 15%;
+    }
   
   .col-autorizacion {
     width: 30%;
-    text-align: center;
-  }
-  
-  .col-imagen {
-    width: 20%;
     text-align: center;
   }
 
@@ -281,13 +292,25 @@ table {
     text-align: center;
   }
   
-  .col-imagen img {
-    width: 50px; /* Ancho fijo */
-    height: 50px; /* Alto fijo */
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
-    object-fit: cover; /* Ajusta la imagen para que llene el contenedor sin deformarse */
+  .col-imagen {
+    width: 15%;
+    text-align: center;
+}
+
+.col-imagen img {
+  width: 50px; /* Ancho fijo */
+  height: 50px; /* Alto fijo */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+  object-fit: cover; /* Ajusta la imagen para que llene el contenedor sin deformarse */
+}
+
+@media (max-width: 768px) {
+  .horizontal-images img {
+      width: 80px; /* Tamaño reducido para pantallas pequeñas */
+      height: 80px;
   }
+}
 
   @media (max-width: 768px) {
   table {
@@ -320,7 +343,7 @@ button.activo {
     cursor: pointer;
   }
   
-  .filtro-docentes {
+  .filtro-estudiantes {
     margin-bottom: 20px;
   }
   
@@ -421,7 +444,7 @@ button.inactivo {
 
   /* Título principal */
   h1 {
-    font-size: 2rem; /* Aumenta el tamaño de la fuente */
+    font-size: 3rem; /* Aumenta el tamaño de la fuente */
     color: #1d487c; /* Color del texto */
     font-weight: bold; /* Negrita */
     margin-bottom: 20px; /* Espacio debajo del título */
@@ -434,7 +457,7 @@ button.inactivo {
 }
 
   /* Contenedor del filtro */
-  .filtro-docentes {
+  .filtro-estudiantes {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -443,40 +466,39 @@ button.inactivo {
     margin: 0 auto;
   }
 
- /* Contenedor principal */
- .filtro-docentes-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px 20px;
-  box-sizing: border-box;
-}
+  /* Input del filtro */
+  .input-buscar {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #d1e5fd;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
-/* Filtro a la izquierda */
-.filtro-docentes {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex: 1; /* Ocupa espacio proporcional */
-}
+  .input-buscar:focus {
+    border-color: #1d487c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
-.input-buscar {
-  width: 150%;
-  max-width: 600px;
-  padding: 10px 10px;
-  font-size: 1rem;
-  border: 2px solid #d1e5fd;
-  border-radius: 25px;
-  outline: none;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+  /* Botón de búsqueda (opcional) */
+  .btn-buscar {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #1d487c;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
-.input-buscar:focus {
-  border-color: #1d487c;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+  .btn-buscar:hover {
+    background-color: #2e65a8;
+  }
 
   /* Responsividad */
   @media (max-width: 768px) {
@@ -506,34 +528,34 @@ button.inactivo {
 }
 
 
-/*Notificacion*/
+
 .toast-message {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    background: #f0f8ff;
-    color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    animation: fadeInOut 2s ease forwards;
-    width: 300px; /* Set the desired width here */
-  }
-  
-  .toast-messag {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    background: #f0f8ff;
-    color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    animation: fadeInOut 3s ease forwards;
-    width: 300px; /* Set the desired width here */
-  }
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #58c542;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeInOut 2s ease forwards;
+  width: 300px; /* Set the desired width here */
+}
+
+.toast-messag {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #f0f8ff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeInOut 3s ease forwards;
+  width: 260px; /* Set the desired width here */
+}
 
 .dialog-container {
   display: flex;
@@ -571,18 +593,17 @@ button.inactivo {
 }
 
 .btn-eliminar {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: #e74c3c;  /* Color rojo para indicar eliminación */
-    font-size: 20px;
-  }
-  
-  .icon-tachito {
-    font-size: 20px;
-  }
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #e74c3c;  /* Color rojo para indicar eliminación */
+  font-size: 20px;
+}
 
-   /* Botones al centro */
+.icon-tachito {
+  font-size: 20px;
+}
+
 .botones-descargar {
   display: flex;
   justify-content: center;
@@ -615,45 +636,4 @@ button.inactivo {
 
 .btn-descargar:hover {
   background-color: #45a049;
-}
-
-/* Opciones a la derecha */
-.menu-filtro {
-  align-items: center;
-}
-
-.opciones {
-  display: flex;
-  gap: 10px;
-}
-
-.opcion-check {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-size: 15px;
-  padding: 0 10px;
-}
-
-.opcion-check input[type="radio"] {
-  display: none;
-}
-
-.opcion-check .checkmark {
-  width: 15px;
-  height: 15px;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  margin-right: 10px;
-  position: relative;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.opcion-check input[type="radio"]:checked + .checkmark {
-  background-color: #007bff;
-  border-color: #0056b3;
-}
-
-.opcion-check:hover .checkmark {
-  border-color: #007bff;
 }

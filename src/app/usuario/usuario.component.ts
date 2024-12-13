@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule],
+    MatButtonModule]  
 })
 export class UsuarioComponent {
   fb = inject(FormBuilder);
@@ -31,17 +31,19 @@ export class UsuarioComponent {
       '',
       [
         Validators.required,
-        Validators.email, // Validación de formato de email
+        Validators.email, // Validación de formato general de email
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|edu\.pe)$/), // Dominio específico permitido
       ],
     ],
     password: [
       '',
       [
         Validators.required,
-        Validators.minLength(6), // Validación de longitud mínima para la contraseña
+        Validators.minLength(6), // Validación de longitud mínima
       ],
     ],
   });
+  
   errorMessage: string | null = null;
 
   onSubmit(): void {

@@ -22,9 +22,13 @@
                 <li class="menu-item" id="mantenimiento">
                     <a>ACTUALIZAR</a>
                     <ul class="submenu">
-                        <li><a href="estudianteAct">ESTUDIANTE</a></li>
-                        <li><a href="docenteAct">DOCENTE</a></li>
-                        <li><a href="personalAct">PERSONAL ADMIN</a></li>
+                      <li><a href="estudianteAct">ESTUDIANTE</a></li>
+                      <li><a href="docenteAct">DOCENTE</a></li>
+                      <li><a href="personalAct">PERSONAL ADMIN</a></li>
+                      <li><a href="ingresoAct">INGRESO</a></li>
+                      <li><a href="salidaAct">SALIDA</a></li>
+                      <li><a href="permisoIngresoAct">PERMISO INGRESO</a></li>
+                      <li><a href="permisoSalidaAct">PERMISO SALIDA</a></li>
                     </ul>
                 </li>
             </ul>
@@ -35,7 +39,8 @@
         <main class="main-content">
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="register-form">
               <h1 class="register-title">Crear Cuenta</h1>
-              
+              <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+              <br>
               <!-- Campo de Correo Electrónico -->
               <div class="form-group">
                 <label for="email" class="form-label">Correo electrónico</label>
@@ -72,8 +77,7 @@
               <div class="form-group">
                 <button type="submit" class="form-button" [disabled]="form.invalid">Registrar</button>
               </div>
-            </form>     
-          
+            </form>    
         </main>
     </div>
 </body>

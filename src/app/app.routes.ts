@@ -6,6 +6,10 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { ActualizarEstudianteComponent } from './actualizar-estudiante/actualizar-estudiante.component';
 import { ActualizarDocenteComponent } from './actualizar-docente/actualizar-docente.component';
 import { ActualizarPersonalAdminComponent } from './actualizar-personal-admin/actualizar-personal-admin.component';
+import { ActualizarIngresoComponent } from './actualizar-ingreso/actualizar-ingreso.component';
+import { ActualizarSalidaComponent } from './actualizar-salida/actualizar-salida.component';
+import { ActualizarPermisoingresoComponent } from './actualizar-permisoingreso/actualizar-permisoingreso.component';
+import { ActualizarPermisosalidaComponent } from './actualizar-permisosalida/actualizar-permisosalida.component';
 
 
 export const routes: Routes = [
@@ -36,6 +40,22 @@ export const routes: Routes = [
     {
       path: 'personalAct',
       component: ActualizarPersonalAdminComponent,
+    },
+    {
+      path: 'ingresoAct',
+      component: ActualizarIngresoComponent,
+    },
+    {
+      path: 'salidaAct',
+      component: ActualizarSalidaComponent,
+    },
+    {
+      path: 'permisoIngresoAct',
+      component: ActualizarPermisoingresoComponent,
+    },
+    {
+      path: 'permisoSalidaAct',
+      component: ActualizarPermisosalidaComponent,
     },
       
 ];

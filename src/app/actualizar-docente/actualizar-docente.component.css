@@ -391,39 +391,40 @@ button.inactivo {
     margin: 0 auto;
   }
 
-  /* Input del filtro */
-  .input-buscar {
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border: 2px solid #d1e5fd;
-    border-radius: 25px;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+ /* Contenedor principal */
+ .filtro-docentes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
 
-  .input-buscar:focus {
-    border-color: #1d487c;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+/* Filtro a la izquierda */
+.filtro-docentes {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1; /* Ocupa espacio proporcional */
+}
 
-  /* Botón de búsqueda (opcional) */
-  .btn-buscar {
-    margin-left: 10px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #1d487c;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.input-buscar {
+  width: 150%;
+  max-width: 600px;
+  padding: 10px 10px;
+  font-size: 1rem;
+  border: 2px solid #d1e5fd;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .btn-buscar:hover {
-    background-color: #2e65a8;
-  }
+.input-buscar:focus {
+  border-color: #1d487c;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
   /* Responsividad */
   @media (max-width: 768px) {
@@ -529,3 +530,78 @@ button.inactivo {
     font-size: 20px;
   }
   
+  /* Botones al centro */
+.botones-descargar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Espaciado entre botones */
+  flex: 1; /* Ocupa espacio proporcional */
+}
+
+.btn-descarga {
+  background-color: #f11d1d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.btn-descargar {
+  background-color: #23ac2f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.btn-descargar:hover {
+  background-color: #45a049;
+}
+
+/* Opciones a la derecha */
+.menu-filtro {
+  align-items: center;
+}
+
+.opciones {
+  display: flex;
+  gap: 10px;
+}
+
+.opcion-check {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0 10px;
+}
+
+.opcion-check input[type="radio"] {
+  display: none;
+}
+
+.opcion-check .checkmark {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.opcion-check input[type="radio"]:checked + .checkmark {
+  background-color: #007bff;
+  border-color: #0056b3;
+}
+
+.opcion-check:hover .checkmark {
+  border-color: #007bff;
+}

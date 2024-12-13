@@ -25,6 +25,10 @@
                         <li><a href="estudianteAct">ESTUDIANTE</a></li>
                         <li><a href="docenteAct">DOCENTE</a></li>
                         <li><a href="personalAct">PERSONAL ADMIN</a></li>
+                        <li><a href="ingresoAct">INGRESO</a></li>
+                        <li><a href="salidaAct">SALIDA</a></li>
+                        <li><a href="permisoIngresoAct">PERMISO INGRESO</a></li>
+                        <li><a href="permisoSalidaAct">PERMISO SALIDA</a></li>
                     </ul>
                 </li>
             </ul>
@@ -54,7 +58,7 @@
                 </div>
             </div>                     
             <h1>Listado de Personal Administrativo</h1>
-            <div class="filtro-docentes">
+            <div class="filtro-docentes-container">
                 <div class="filtro-docentes">
                     <input 
                     type="text" 
@@ -62,11 +66,40 @@
                     (ngModelChange)="validarEmoji(); buscarDocentes()"
                     (keydown)="prevenirEntradaNoAlfanumerica($event)" 
                     (paste)="validarPegado($event)" 
-                    placeholder="Buscar por nombre o código de personal administrativo" 
+                    placeholder="Buscar por nombre o código del personal" 
                     class="input-buscar"
                     />
-                </div>                  
-            </div>
+                </div>  
+                
+                <div class="botones-descargar">
+                    <button (click)="descargarPDF()" class="btn-descarga">PDF</button>
+                    <button (click)="exportarExcel()" class="btn-descargar">EXCEL</button>
+                </div>
+              
+                <!-- Opciones a la derecha -->
+                <div class="menu-filtro">
+                  <div class="opciones">
+                    <label class="opcion-check">
+                      <input type="radio" name="filtroAutorizacion" value="todos" 
+                             [(ngModel)]="filtroAutorizacion" (change)="cambiarFiltro('todos')" />
+                      <span class="checkmark"></span>
+                      Todos
+                    </label>
+                    <label class="opcion-check">
+                      <input type="radio" name="filtroAutorizacion" value="autorizados" 
+                             [(ngModel)]="filtroAutorizacion" (change)="cambiarFiltro('autorizados')" />
+                      <span class="checkmark"></span>
+                      Autorizados
+                    </label>
+                    <label class="opcion-check">
+                      <input type="radio" name="filtroAutorizacion" value="no_autorizados" 
+                             [(ngModel)]="filtroAutorizacion" (change)="cambiarFiltro('no_autorizados')" />
+                      <span class="checkmark"></span>
+                      No Autorizados
+                    </label>
+                  </div>
+                </div>
+              </div>
             <br>
             <div class="lista-docentes">
                 <table>
