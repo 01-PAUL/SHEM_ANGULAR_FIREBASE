@@ -97,9 +97,9 @@ export class ActualizarSalidaComponent {
     });
 }
 
-toggleAutorizacion(ingreso: { key: string; data: Ingreso }): void {
+toggleAutorizacion(salida: { key: string; data: Salida }): void {
   const nuevaAutorizacion =
-      ingreso.data.autorizacion === 'Autorizado' ? 'No Autorizado' : 'Autorizado';
+      salida.data.autorizacion === 'Autorizado' ? 'No Autorizado' : 'Autorizado';
   
   const tablas = ['estudiante', 'docente', 'personalAdministrativo'];
   let encontrado = false;
@@ -117,7 +117,7 @@ toggleAutorizacion(ingreso: { key: string; data: Ingreso }): void {
                       );
 
                       const registro = registros.find(
-                          ([, value]) => value.codUsuario === ingreso.data.codigoUsuario
+                          ([, value]) => value.codUsuario === salida.data.codigoUsuario
                       );
 
                       if (registro) {
@@ -130,7 +130,7 @@ toggleAutorizacion(ingreso: { key: string; data: Ingreso }): void {
                               .subscribe(
                                   () => {
                                       console.log('Autorización actualizada correctamente.');
-                                      ingreso.data.autorizacion = nuevaAutorizacion;
+                                      salida.data.autorizacion = nuevaAutorizacion;
                                       this.cdRef.detectChanges(); // Actualiza la vista.
                                   },
                                   (error) => console.error('Error al actualizar:', error)
