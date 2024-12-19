@@ -10,6 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import jsPDF from 'jspdf';
 import * as XLSX from 'xlsx';
+import { Ingreso } from '../model/ingreso.model';
 
 @Component({
   selector: 'app-actualizar-salida',
@@ -48,17 +49,98 @@ export class ActualizarSalidaComponent {
       .subscribe((data) => {
         if (data) {
           this.salida = Object.entries(data)
-            .filter(([key, item]) => item !== null)
-            .map(([key, item]) => ({
-              key,
-              data: {
-                ...item,
-              },
-            }));
-          this.salidaFiltrados = [...this.salida]; 
+          .filter(([key, item]) => item !== null && item.codigoUsuario)
+          .map(([key, item]) => ({
+            key,
+            data: {
+              ...item,
+              autorizacion: '', // Campo inicial vacío
+            },
+          }));
+
+  
+          this.salida.forEach((sal) => {
+            this.buscarAutorizacion(sal.data.codigoUsuario).then((autorizacion) => {
+              sal.data.autorizacion = autorizacion;
+            });
+          });
+  
+          this.salidaFiltrados = [...this.salida];
         }
       });
   }
+  
+  private buscarAutorizacion(codigoUsuario: string): Promise<string> {
+    return Promise.all(
+        ['estudiante', 'docente', 'personalAdministrativo'].map((tabla) =>
+            this.http
+                .get<{ [key: string]: any }>(
+                    `https://shem-firebase-default-rtdb.firebaseio.com/${tabla}.json`
+                )
+                .toPromise()
+        )
+    ).then((results) => {
+        for (const data of results) {
+            if (data) {
+                const registros = Object.entries(data).filter(
+                    ([, value]) => value !== null && value.codUsuario
+                );
+                const registro = registros.find(
+                    ([, value]) => value.codUsuario === codigoUsuario
+                );
+                if (registro) {
+                    return registro[1].autorizacion || 'No Autorizado';
+                }
+            }
+        }
+        return 'No Autorizado';
+    });
+}
+
+toggleAutorizacion(ingreso: { key: string; data: Ingreso }): void {
+  const nuevaAutorizacion =
+      ingreso.data.autorizacion === 'Autorizado' ? 'No Autorizado' : 'Autorizado';
+  
+  const tablas = ['estudiante', 'docente', 'personalAdministrativo'];
+  let encontrado = false;
+
+  tablas.forEach((tabla) => {
+      if (!encontrado) {
+          this.http
+              .get<{ [key: string]: any }>(
+                  `https://shem-firebase-default-rtdb.firebaseio.com/${tabla}.json`
+              )
+              .subscribe((data) => {
+                  if (data) {
+                      const registros = Object.entries(data).filter(
+                          ([, value]) => value !== null && value.codUsuario
+                      );
+
+                      const registro = registros.find(
+                          ([, value]) => value.codUsuario === ingreso.data.codigoUsuario
+                      );
+
+                      if (registro) {
+                          encontrado = true;
+                          this.http
+                              .put(
+                                  `https://shem-firebase-default-rtdb.firebaseio.com/${tabla}/${registro[0]}.json`,
+                                  { ...registro[1], autorizacion: nuevaAutorizacion }
+                              )
+                              .subscribe(
+                                  () => {
+                                      console.log('Autorización actualizada correctamente.');
+                                      ingreso.data.autorizacion = nuevaAutorizacion;
+                                      this.cdRef.detectChanges(); // Actualiza la vista.
+                                  },
+                                  (error) => console.error('Error al actualizar:', error)
+                              );
+                      }
+                  }
+              });
+      }
+  });
+}
 
   cambiarPagina(event: any): void {
     this.paginaActual = event.pageIndex; // Actualiza la página actual

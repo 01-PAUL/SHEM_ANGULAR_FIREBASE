@@ -8,4 +8,5 @@ export interface Ingreso {
     tipoUsuario: string;
     tipoMicromovilidad: string;
     imageUrl: string;
+    autorizacion: string;
 }

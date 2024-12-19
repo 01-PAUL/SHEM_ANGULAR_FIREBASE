@@ -256,13 +256,11 @@ table {
   }
   
   .col-tipo-doc, .col-doc {
-    
   text-align: center;
-    width: 18%;
+    width: 20%;
   }
 
   .col-codigo {
-    
     text-align: center;
       width: 18%;
     }
@@ -271,6 +269,11 @@ table {
   text-align: center;
     width: 20%;
   }
+
+  .col-micro {
+    text-align: center;
+      width: 23%;
+    }
 
   .col-fecha {
     text-align: center;
@@ -283,7 +286,7 @@ table {
     }
   
   .col-autorizacion {
-    width: 30%;
+    width: 20%;
     text-align: center;
   }
 
@@ -636,4 +639,14 @@ button.inactivo {
 
 .btn-descargar:hover {
   background-color: #45a049;
+}
+
+button.activo {
+  background-color: green;
+  color: white;
+}
+
+button.inactivo {
+  background-color: red;
+  color: white;
 }

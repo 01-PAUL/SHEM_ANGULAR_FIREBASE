@@ -27,14 +27,11 @@ import * as XLSX from 'xlsx';
   styleUrl: './actualizar-ingreso.component.css'
 })
 export class ActualizarIngresoComponent {
-  ingreso: { key: string; data: Ingreso }[] = [];
-  ingresoFiltrados: { key: string; data: Ingreso }[] = [];
+  ingreso: { key: string; data: Ingreso, autorizacion?: string }[] = [];
+  ingresoFiltrados: { key: string; data: Ingreso, autorizacion?: string }[] = [];
   filtroTexto: string = '';
   paginaActual: number = 0;
   elementosPorPagina: number = 4;
-  mensajeVisible: boolean = false;
-  mensajeVisibl: boolean = false;
-  maxPalabras: number = 25;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
@@ -48,17 +45,98 @@ export class ActualizarIngresoComponent {
       .subscribe((data) => {
         if (data) {
           this.ingreso = Object.entries(data)
-            .filter(([key, item]) => item !== null)
-            .map(([key, item]) => ({
-              key,
-              data: {
-                ...item,
-              },
-            }));
-          this.ingresoFiltrados = [...this.ingreso]; 
+          .filter(([key, item]) => item !== null && item.codigoUsuario)
+          .map(([key, item]) => ({
+            key,
+            data: {
+              ...item,
+              autorizacion: '', // Campo inicial vacío
+            },
+          }));
+
+  
+          this.ingreso.forEach((ing) => {
+            this.buscarAutorizacion(ing.data.codigoUsuario).then((autorizacion) => {
+              ing.data.autorizacion = autorizacion;
+            });
+          });
+  
+          this.ingresoFiltrados = [...this.ingreso];
         }
       });
   }
+  
+  private buscarAutorizacion(codigoUsuario: string): Promise<string> {
+    return Promise.all(
+        ['estudiante', 'docente', 'personalAdministrativo'].map((tabla) =>
+            this.http
+                .get<{ [key: string]: any }>(
+                    `https://shem-firebase-default-rtdb.firebaseio.com/${tabla}.json`
+                )
+                .toPromise()
+        )
+    ).then((results) => {
+        for (const data of results) {
+            if (data) {
+                const registros = Object.entries(data).filter(
+                    ([, value]) => value !== null && value.codUsuario
+                );
+                const registro = registros.find(
+                    ([, value]) => value.codUsuario === codigoUsuario
+                );
+                if (registro) {
+                    return registro[1].autorizacion || 'No Autorizado';
+                }
+            }
+        }
+        return 'No Autorizado';
+    });
+}
+
+toggleAutorizacion(ingreso: { key: string; data: Ingreso }): void {
+  const nuevaAutorizacion =
+      ingreso.data.autorizacion === 'Autorizado' ? 'No Autorizado' : 'Autorizado';
+  
+  const tablas = ['estudiante', 'docente', 'personalAdministrativo'];
+  let encontrado = false;
+
+  tablas.forEach((tabla) => {
+      if (!encontrado) {
+          this.http
+              .get<{ [key: string]: any }>(
+                  `https://shem-firebase-default-rtdb.firebaseio.com/${tabla}.json`
+              )
+              .subscribe((data) => {
+                  if (data) {
+                      const registros = Object.entries(data).filter(
+                          ([, value]) => value !== null && value.codUsuario
+                      );
+
+                      const registro = registros.find(
+                          ([, value]) => value.codUsuario === ingreso.data.codigoUsuario
+                      );
+
+                      if (registro) {
+                          encontrado = true;
+                          this.http
+                              .put(
+                                  `https://shem-firebase-default-rtdb.firebaseio.com/${tabla}/${registro[0]}.json`,
+                                  { ...registro[1], autorizacion: nuevaAutorizacion }
+                              )
+                              .subscribe(
+                                  () => {
+                                      console.log('Autorización actualizada correctamente.');
+                                      ingreso.data.autorizacion = nuevaAutorizacion;
+                                      this.cdRef.detectChanges(); // Actualiza la vista.
+                                  },
+                                  (error) => console.error('Error al actualizar:', error)
+                              );
+                      }
+                  }
+              });
+      }
+  });
+}
 
   cambiarPagina(event: any): void {
     this.paginaActual = event.pageIndex; // Actualiza la página actual

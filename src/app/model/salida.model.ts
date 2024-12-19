@@ -8,4 +8,5 @@ export interface Salida {
     tipoUsuario: string;
     micromovilidad: string;
     imageUrl: string;
+    autorizacion: string;
 }
