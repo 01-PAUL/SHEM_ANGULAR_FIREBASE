@@ -87,7 +87,7 @@
                     </div>
                 </ng-container>
                 <ng-container *ngIf="chatStep === 3">
-                    <p>En <strong>MANTENIMIENTO</strong>, se administran datos de <strong>ESTUDIANTE</strong>, <strong>DOCENTE</strong> y <strong>PERSONAL ADMIN.</strong></p>
+                    <p>En <strong>ACTUALIZAR</strong>, se administran datos de <strong>ESTUDIANTE</strong>, <strong>DOCENTE</strong> y <strong>PERSONAL ADMIN.</strong></p>
                     
                     <div class="chatbot-buttons">
                         <button class="botón-atras" (click)="previousStep()">ATRÁS</button>
@@ -95,6 +95,14 @@
                     </div>
                 </ng-container>
                 <ng-container *ngIf="chatStep === 4">
+                    <p>En <strong>REPORTES</strong>, se administran los registros del <strong>INGRESO</strong> y <strong>SALIDA</strong> de los usuarios. También los registros del <strong>PERMISO INGRESO</strong> y <strong>PERMISO SALIDA</strong> de las personas externas</p>
+                    
+                    <div class="chatbot-buttons">
+                        <button class="botón-atras" (click)="previousStep()">ATRÁS</button>
+                        <button class="botón-siguiente" (click)="nextStep()">SIGUIENTE</button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="chatStep === 5">
                     <p>En <strong>CERRAR SESIÓN</strong>, puedes finalizar tu sesión de manera segura.</p>
                     
                     <div class="chatbot-buttons">
@@ -102,7 +110,7 @@
                         <button class="botón-siguiente" (click)="finishChat()">FINALIZAR</button>
                     </div>
                 </ng-container>
-                <ng-container *ngIf="chatStep > 4">
+                <ng-container *ngIf="chatStep > 5">
                     <p><strong>¡ESTÁS LISTO! AHORA ES TU TURNO. 🚀😃</strong></p>
                     <button class="botón" (click)="closeChatbot()">CERRAR</button>
                 </ng-container>

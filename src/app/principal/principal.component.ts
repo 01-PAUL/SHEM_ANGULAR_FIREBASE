@@ -19,6 +19,7 @@ export class PrincipalComponent implements OnInit {
     "Este es el menú INICIO, donde puedes encontrar información principal del sistema.",
     "En REGISTROS, puedes gestionar los datos de usuarios registrados.",
     "En MANTENIMIENTO, se administran datos de estudiantes, docentes y personal administrativo.",
+    "En REPORTES, se administran datos del ingre, docentes y personal administrativo.",
     "En CERRAR SESIÓN, puedes finalizar tu sesión de manera segura."
   ];
 
@@ -62,7 +63,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.chatStep < 4) {
+    if (this.chatStep < 5) {
       this.chatStep++;
     }
   }
@@ -87,7 +88,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   finishChat() {
-    this.chatStep = 5;
+    this.chatStep = 6;
   }
 
   closeChatbot() {
